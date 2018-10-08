@@ -1,0 +1,18 @@
+{
+  "data": {
+    "type": "AgencyName",
+    "id": "AgencyName",
+    "attributes": {
+      "items": [
+        {
+          "id": "Crm123467",
+          "name": "Agency Name 1"
+        },
+        {
+          "id": "Crm256899",
+          "name": "Agency Name 1"
+        }
+      ]
+    }
+  }
+}

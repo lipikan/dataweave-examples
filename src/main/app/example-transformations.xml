@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
+    <sub-flow name="order-transform-null-check">
+        <dw:transform-message doc:name="Transform Message" metadata:id="38c35584-e0d3-48e1-b512-b969172bd284">
+            <dw:input-payload doc:sample="samples/order-sample.xml" mimeType="application/xml"/>
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/json skipNullOn="everywhere"
+---
+orders: {
+  order: {
+  StoreID: payload.Records.storenumber,
+  Total: payload.Records.subTotal,
+ ((payload.Records.*RecordsEntries.*RecordEntry default []) map {
+      IndividualEntry: {
+        Number:$.entryNumber,
+        DeliverCharge:$.deliverycharge
+      }
+    })
+  }
+}]]></dw:set-payload>
+        </dw:transform-message>
+    </sub-flow>
+    <sub-flow name="example-string-function-dw">
+        <dw:transform-message doc:name="Transform Message" metadata:id="4322b4c4-316a-45cc-bc25-4d2f1f1e146e">
+            <dw:input-payload doc:sample="samples/user-sample.xml" mimeType="application/xml"/>
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/json
+%function words(name) name splitBy " "
+---
+contacts: payload.users.*user map using (parts =  words($.name)){
+  firstName: parts[0],
+  (secondName: parts[1][0..2]) when (sizeOf parts) > 2,
+  lastName: parts[-1],
+  email:((lower $.name) replace " " with ".") ++ "@acme.com",
+  address: $.street
+}]]></dw:set-payload>
+        </dw:transform-message>
+    </sub-flow>
+</mule>

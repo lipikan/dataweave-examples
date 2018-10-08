@@ -1,0 +1,18 @@
+{
+  "type": "CRIFObject",
+  "insured": {
+    "namedInsured": {
+      "name": "ABC"
+    },
+    "insured": [
+      {
+        "name": null,
+        "abn": null
+      },
+      {
+        "name": null,
+        "abn": null
+      }
+    ]
+  }
+}

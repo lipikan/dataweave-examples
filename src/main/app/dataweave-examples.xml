@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+    <flow name="dataweave-examplesFlow">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/orders" doc:name="HTTP" allowedMethods="GET"/>
+        <set-payload value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;Records&gt;
+  &lt;storenumber /&gt;
+  &lt;calculated&gt;false&lt;/calculated&gt;
+  &lt;subTotal&gt;12&lt;/subTotal&gt;
+ &lt;RecordsEntries&gt;
+   &lt;RecordEntry&gt;
+     &lt;deliverycharge&gt;30.0&lt;/deliverycharge&gt;
+     &lt;entryNumber&gt;8&lt;/entryNumber&gt;
+     &lt;Value&gt;true&lt;/Value&gt;
+  &lt;/RecordEntry&gt;
+  &lt;RecordEntry&gt;
+    &lt;deliverycharge&gt;20.0&lt;/deliverycharge&gt;
+    &lt;entryNumber&gt;7&lt;/entryNumber&gt;
+    &lt;Value&gt;false&lt;/Value&gt;
+  &lt;/RecordEntry&gt;
+&lt;/RecordsEntries&gt;
+ &lt;RecordsEntries&gt;
+    &lt;RecordEntry&gt;
+      &lt;deliverycharge&gt;30.0&lt;/deliverycharge&gt;
+      &lt;entryNumber&gt;8&lt;/entryNumber&gt;
+      &lt;Value&gt;false&lt;/Value&gt;
+    &lt;/RecordEntry&gt;
+ &lt;/RecordsEntries&gt;
+&lt;/Records&gt;" doc:name="Set Payload"/>
+        <flow-ref name="order-transform-null-check" doc:name="order-transform-null-check"/>
+    </flow>
+    <flow name="dataweave-external-functions">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/external" doc:name="HTTP" allowedMethods="GET"/>
+        <flow-ref name="externalise-dw-functionSub_Flow" doc:name="externalise-dw-functionSub_Flow"/>
+    </flow>
+    
+    <flow name="dataweave-if-else-functions">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/condition" doc:name="HTTP" allowedMethods="POST"/>
+        <flow-ref name="if-condition-exampleSub_Flow" doc:name="if-condition-exampleSub_Flow"/>
+    </flow>
+    
+    <flow name="dataweave-java-functions">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/java" doc:name="HTTP" allowedMethods="GET"/>
+        <flow-ref name="java-method-exampleSub_Flow" doc:name="java-method-exampleSub_Flow"/>
+    </flow>
+    <flow name="dataweave-doc-test">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="/doc" doc:name="HTTP" allowedMethods="GET"/>
+        <flow-ref name="doc-api-mappingFlow" doc:name="doc-api-mappingFlow"/>
+    </flow>
+    
+</mule>

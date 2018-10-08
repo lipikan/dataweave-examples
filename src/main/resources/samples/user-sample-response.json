@@ -1,0 +1,17 @@
+{
+  "contacts": [
+    {
+      "firstName": "Mariano",
+      "lastName": "Achaval",
+      "email": "mariano.achaval@acme.com.ar",
+      "address": "Laprida 924"
+    },
+    {
+      "firstName": "Martin",
+      "secondName": "Alejandro",
+      "lastName": "Cousido",
+      "email": "martin.alejandro.cousido@acme.com.ar",
+      "address": "Acassuso 2280"
+    }
+  ]
+}

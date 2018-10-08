@@ -1,0 +1,19 @@
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:soap1="http://guidewire.com/ws/soapheaders" xmlns:doc="http://guidewire.com/pc/ws/icare/document/webservice/DocumentAPI" xmlns:icar="http://guidewire.com/pc/gx/icare.integration.document.gxmodel.documentgenerationpayloadmodel" xmlns:com="http://guidewire.com/pc/gx/com.icare.crif.cr.gx.docvirtualobjmodel" xmlns:com1="http://guidewire.com/pc/gx/com.icare.crif.cr.gx.premiumdatamodel" xmlns:com2="http://guidewire.com/pc/gx/com.icare.crif.cr.gx.doctmpltcoveragesobjmodel" xmlns:com3="http://guidewire.com/pc/gx/com.icare.crif.cr.gx.docinvoicesobjmodel">
+<soap:Body>
+<icar:AdditionalInsureds>
+                    <!--Zero or more repetitions:-->
+                    <icar:Entry action="?">
+                       <!--Optional:-->
+                       <icar:InsuredABN>abn1</icar:InsuredABN>
+                       <!--Optional:-->
+                       <icar:InsuredName>name1</icar:InsuredName>
+                    </icar:Entry>
+                    <icar:Entry action="?">
+                       <!--Optional:-->
+                       <icar:InsuredABN>abn2</icar:InsuredABN>
+                       <!--Optional:-->
+                       <icar:InsuredName>name2</icar:InsuredName>
+                    </icar:Entry>
+                 </icar:AdditionalInsureds>
+ </soap:Body>
+</soap:Envelope>

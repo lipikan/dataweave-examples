@@ -1,0 +1,4 @@
+def strUtil(data){
+	 com.test.TestUtil.strUtil(data)
+}
+

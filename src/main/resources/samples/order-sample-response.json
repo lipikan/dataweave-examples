@@ -1,0 +1,20 @@
+{
+  "orders": {
+    "order": {
+      "StoreID": "",
+      "Total": "12",
+      "IndividualEntry": {
+        "Number": "8",
+        "DeliverCharge": "30.0"
+      },
+      "IndividualEntry": {
+        "Number": "7",
+        "DeliverCharge": "20.0"
+      },
+      "IndividualEntry": {
+        "Number": "8",
+        "DeliverCharge": "30.0"
+      }
+    }
+  }
+}

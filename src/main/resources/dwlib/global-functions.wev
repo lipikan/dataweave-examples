@@ -1,0 +1,11 @@
+%dw 1.0
+
+%function addition ( num1, num2 )
+"$(getIntroString()) :  $(num1 + num2)"
+%function getIntroString()
+"The total amount is: "
+---
+//Provide external names for variables and functions defined in the header
+{
+  addNumbers : addition
+}
